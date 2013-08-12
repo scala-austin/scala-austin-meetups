@@ -1,0 +1,40 @@
+target/
+
+# Vim
+#
+.swo
+.swp
+.*.swo
+.*.swp
+
+# Emacs
+#
+.ensime
+.ensime_lucene
+
+# IntelliJ
+#
+.idea/
+.idea_modules
+*.iml
+*.ipr
+*.iws
+
+# Eclipse
+#
+.project
+.settings/
+.classpath
+
+# Exuberant C-tags and CScope
+#
+tags
+cscope.out
+
+# Log files
+#
+*.log
+
+# Mac
+#
+.DS_Store
