@@ -3,6 +3,25 @@
 <meta charset="utf-8">
   <title></title>
   <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
 <style>
   html { background-color: black; }
   body { background-color: white; border-radius: 12px}
@@ -78,15 +97,6 @@
 <body>
 <section id="welcome-to-austin-scala-enthusiasts" class="slide level2">
 <h1>Welcome to Austin Scala Enthusiasts</h1>
-<!--
-~~~~ {.scala .numberLines}
-def hello =
-  new Fuck {
-    def yeah = "world"
-  }
-~~~~
--->
-
 <table>
 <tbody>
 <tr class="odd">
@@ -142,7 +152,7 @@ def hello =
 <p>Twitter: @shajra</p>
 <p>Freenode (IRC): tnks</p>
 <ul>
-<li>ex-Java developer of 5+ years</li>
+<li>developed Java for 5+ years</li>
 <li>studying functional programming for many of those years</li>
 <li>functional programming professionally for around 2 years</li>
 <li>programming Scala professionally for 6 months</li>
@@ -165,10 +175,11 @@ def hello =
 <li>Scala is relatively new to Rackspace</li>
 <li>we automate/integrate legacy systems in our DCs</li>
 <li>our domain + legacy application ⇒ complexity</li>
+<li>correctness problems surface more than performance problems</li>
 </ul>
 </section>
-<section id="why-attracted-to-scala-at-first" class="slide level2">
-<h1>why attracted to Scala, at first</h1>
+<section id="why-scala-for-the-team-at-first" class="slide level2">
+<h1>why Scala for the team, at first</h1>
 <ul>
 <li>fresh reboot with new code</li>
 <li>benefits of JVM as a platform (coming from Ruby/Rails)</li>
@@ -191,14 +202,21 @@ def hello =
 <li>reuse with less coupling</li>
 <li>elegant, composeable APIs (DSLs)</li>
 </ul></li>
-<li>correctness</li>
+<li>a <em>lot</em> of these benefits derive from FP. . .</li>
+<li>. . . the rest from type-checking</li>
 </ul>
 </section>
 <section id="still-seeing-how-these-pan-out" class="slide level2">
 <h1>still seeing how these pan out</h1>
 <ul>
-<li>improved talent pool</li>
-<li>need for actor system libraries</li>
+<li>improved talent pool
+<ul>
+<li>TODO: flesh out</li>
+</ul></li>
+<li>need for actor system libraries
+<ul>
+<li>TODO: flesh out</li>
+</ul></li>
 </ul>
 </section>
 <section id="apprehensive-of-now" class="slide level2">
@@ -208,12 +226,98 @@ def hello =
 <ul>
 <li>loss of composition</li>
 <li>loss in correctness</li>
-<li>we subset our use of Scala</li>
+<li>loss of human comprehensibility</li>
 </ul></li>
+<li>we subset our use of Scala to get more out of types
+<ul>
+<li>no side-effects</li>
+<li>no variance</li>
+<li>TODO: list more</li>
+</ul></li>
+<li>we work hard to program with functions</li>
 </ul>
 </section>
-<section id="questions-comments" class="slide level2">
-<h1>Questions? Comments?</h1>
+<section id="functional-programming" class="slide level2">
+<h1>functional programming</h1>
+<ul>
+<li>programming with functions</li>
+</ul>
+<pre class="sourceCode scala"><code class="sourceCode scala">        <span class="kw">def</span> <span class="fu">myFunc</span>(d: Domain): Range</code></pre>
+<ul>
+<li>a function maps <em>every</em> value in their domain to a value in their range
+<ul>
+<li>always the same value</li>
+<li>no exceptions thrown</li>
+</ul></li>
+<li>higher-order and closures alone aren’t enough</li>
+<li>you can do this in Java or Ruby, but it’s not fun</li>
+</ul>
+</section>
+<section id="all-functions-all-the-way-down" class="slide level2">
+<h1>all functions, all the way down</h1>
+<table class="sourceCode scala numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="sourceCode"><pre><code class="sourceCode scala"><span class="kw">object</span> OurService <span class="kw">extends</span> App {
+
+  <span class="co">// our only side-effecting call</span>
+  main.<span class="fu">unsafePerformIO</span>
+
+  <span class="kw">private</span> <span class="kw">def</span> main =
+    <span class="kw">for</span> {
+      s &lt;- loadService
+      _ &lt;- <span class="fu">startService</span>(s)
+    } <span class="kw">yield</span> ()
+
+  <span class="co">// or with ScalaZ:</span>
+  <span class="co">//</span>
+  <span class="co">// loadService &gt;&gt;= startService</span>
+
+...</code></pre></td></tr></table>
+</section>
+<section id="dangers-of-not-using-functions" class="slide level2">
+<h1>dangers of not using functions</h1>
+<p>If you have this</p>
+<pre class="sourceCode scala"><code class="sourceCode scala">    <span class="kw">val</span> tasks: List[Task] = ...</code></pre>
+<p>are the tasks running yet?</p>
+<ul>
+<li>with side-effects, they <em>might</em> be</li>
+<li>with functions, they <em>never</em> are</li>
+</ul>
+</section>
+<section id="scala-helps-us-fp" class="slide level2">
+<h1>Scala helps us FP</h1>
+<ul>
+<li>immutable collections</li>
+<li>libraries like Scalaz</li>
+</ul>
+</section>
+<section id="thats-all-for-now.-next-time" class="slide level2">
+<h1>that’s all for now. next time?</h1>
+<ul>
+<li>style/archtecture in Scala</li>
+<li>abstracting intelligently</li>
+<li>mastering implicits</li>
+<li>effect tracking (sync and async) in Scala</li>
+<li>for-yield comprehensions (basic monads)</li>
+<li>error handling</li>
+<li>dependency injection in Scala</li>
+<li>SBT</li>
+<li>Spark</li>
+</ul>
 </section>
 <!-- {{{{ dzslides core
 #

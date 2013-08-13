@@ -1,15 +1,6 @@
 Welcome to Austin Scala Enthusiasts
 -----------------------------------
 
-<!--
-~~~~ {.scala .numberLines}
-def hello =
-  new Fuck {
-    def yeah = "world"
-  }
-~~~~
--->
-
 -:|-|:-
 ![meetup.logo] | | <http://www.meetup.com/Austin-Scala-Enthusiasts>
 \ |\ \ \ |
@@ -46,7 +37,7 @@ Twitter: @shajra
 
 Freenode (IRC): tnks
 
-- ex-Java developer of 5+ years
+- developed Java for 5+ years
 - studying functional programming for many of those years
 - functional programming professionally for around 2 years
 - programming Scala professionally for 6 months
@@ -74,9 +65,10 @@ a little about Scala at Rackspace
 - Scala is relatively new to Rackspace
 - we automate/integrate legacy systems in our DCs
 - our domain + legacy application ⇒ complexity
+- correctness problems surface more than performance problems
 
 
-why attracted to Scala, at first
+why Scala for the team, at first
 --------------------------------
 
 - fresh reboot with new code
@@ -98,14 +90,17 @@ why stay with Scala
     - hard to do without types
     - reuse with less coupling
     - elegant, composeable APIs (DSLs)
-- correctness
+- a _lot_ of these benefits derive from FP. . .
+- . . . the rest from type-checking
 
 
 still seeing how these pan out
 ------------------------------
 
 - improved talent pool
+    - TODO: flesh out
 - need for actor system libraries
+    - TODO: flesh out
 
 
 apprehensive of now
@@ -114,8 +109,85 @@ apprehensive of now
 - plurality of programming paradigms
     - loss of composition
     - loss in correctness
-    - we subset our use of Scala
+    - loss of human comprehensibility
+- we subset our use of Scala to get more out of types
+    - no side-effects
+    - no variance
+    - TODO: list more
+- we work hard to program with functions
 
 
-Questions?  Comments?
----------------------
+functional programming
+----------------------
+
+- programming with functions
+
+~~~~ {.scala}
+        def myFunc(d: Domain): Range
+~~~~
+
+- a function maps _every_ value in their domain to a value in their
+  range
+    - always the same value
+    - no exceptions thrown
+- higher-order and closures alone aren't enough
+- you can do this in Java or Ruby, but it's not fun
+
+
+all functions, all the way down
+-------------------------------
+
+~~~~ {.scala .numberLines}
+object OurService extends App {
+
+  // our only side-effecting call
+  main.unsafePerformIO
+
+  private def main =
+    for {
+      s <- loadService
+      _ <- startService(s)
+    } yield ()
+
+  // or with ScalaZ:
+  //
+  // loadService >>= startService
+
+...
+
+~~~~
+
+
+dangers of not using functions
+------------------------------
+
+If you have this
+
+~~~~ {.scala}
+    val tasks: List[Task] = ...
+~~~~
+
+are the tasks running yet?
+
+- with side-effects, they _might_ be
+- with functions, they _never_ are
+
+
+Scala helps us FP
+-----------------
+- immutable collections
+- libraries like Scalaz
+
+
+that's all for now. next time?
+------------------------------
+
+- style/archtecture in Scala
+- abstracting intelligently
+- mastering implicits
+- effect tracking (sync and async) in Scala
+- for-yield comprehensions (basic monads)
+- error handling
+- dependency injection in Scala
+- SBT
+- Spark
