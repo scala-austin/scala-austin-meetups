@@ -102,7 +102,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <tr class="odd">
 <td style="text-align: right;"><img src="images/logo.meetup.png" alt="meetup.logo" /></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"><a href="http://www.meetup.com/Austin-Scala-Enthusiasts">http://www.meetup.com/Austin-Scala-Enthusiasts</a></td>
+<td style="text-align: left;"><a href="http://meetup.com/Austin-Scala-Enthusiasts">http://meetup.com/Austin-Scala-Enthusiasts</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: right;"> </td>
@@ -111,7 +111,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <tr class="odd">
 <td style="text-align: right;"><img src="images/logo.google_groups.png" alt="googlegroup.logo" /></td>
 <td style="text-align: left;"></td>
-<td style="text-align: left;"><a href="https://groups.google.com/forum/#!forum/austin-scala-enthusiasts">https://groups.google.com/forum/#!forum/austin-scala-enthusiasts</a></td>
+<td style="text-align: left;"><a href="http://groups.google.com/forum/#!forum/austin-scala-enthusiasts">http://groups.google.com/forum/#!forum/austin-scala-enthusiasts</a></td>
 </tr>
 <tr class="even">
 <td style="text-align: right;"> </td>
@@ -121,6 +121,15 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <td style="text-align: right;"><img src="images/logo.gmane.png" alt="gmane.logo" /></td>
 <td style="text-align: left;"></td>
 <td style="text-align: left;"><a href="http://dir.gmane.org/gmane.org.user-groups.austin.scala">http://dir.gmane.org/gmane.org.user-groups.austin.scala</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;"> </td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;"><img src="images/logo.github.png" alt="github.logo" /></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"><a href="http://github.com/scala-austin">http://github.com/scala-austin</a></td>
 </tr>
 </tbody>
 </table>
@@ -168,6 +177,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>Curtis Carter</li>
 <li>Franco Lazzarino</li>
 </ul>
+<p>We’ve learned a lot. . . but we’re still learning.</p>
 </section>
 <section id="a-little-about-scala-at-rackspace" class="slide level2">
 <h1>a little about Scala at Rackspace</h1>
@@ -181,19 +191,21 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <section id="why-scala-for-the-team-at-first" class="slide level2">
 <h1>why Scala for the team, at first</h1>
 <ul>
-<li>fresh reboot with new code</li>
 <li>benefits of JVM as a platform (coming from Ruby/Rails)</li>
-<li>perhaps an improved talent pool</li>
+<li>relatively modern language features</li>
 <li>plurality of programming paradigms</li>
 <li>actor system libraries</li>
 <li>improved correctness from type safety</li>
 <li>interest in FP</li>
+<li>fresh reboot with new code</li>
+<li>perhaps an improved talent pool</li>
 </ul>
 </section>
 <section id="why-stay-with-scala" class="slide level2">
 <h1>why stay with Scala</h1>
 <ul>
 <li>correctness</li>
+<li>relatively modern language features</li>
 <li>benefits of JVM (though it’s not perfect)</li>
 <li>modularity and extensibility with types</li>
 <li>typed highly-general abstractions
@@ -202,20 +214,29 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>reuse with less coupling</li>
 <li>elegant, composeable APIs (DSLs)</li>
 </ul></li>
-<li>a <em>lot</em> of these benefits derive from FP. . .</li>
-<li>. . . the rest from type-checking</li>
+<li>a <em>lot</em> of these benefits derive from
+<ul>
+<li>FP</li>
+<li>an expressive type system</li>
+</ul></li>
 </ul>
 </section>
 <section id="still-seeing-how-these-pan-out" class="slide level2">
 <h1>still seeing how these pan out</h1>
 <ul>
-<li>improved talent pool
-<ul>
-<li>TODO: flesh out</li>
-</ul></li>
 <li>need for actor system libraries
 <ul>
-<li>TODO: flesh out</li>
+<li>our algorithms don’t require mutable state</li>
+<li>currently Akka abandons much type-safety</li>
+</ul></li>
+<li>improved talent pool
+<ul>
+<li>the pool is definitely smaller</li>
+<li>the Scala community at large if has much talent</li>
+<li>general JVM expertise ports to Scala</li>
+<li>hard to find local expertise in Scala’s type system</li>
+<li>this meetup is part of the exploration</li>
+<li>talk to me if you’re interested in our team</li>
 </ul></li>
 </ul>
 </section>
@@ -228,13 +249,106 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>loss in correctness</li>
 <li>loss of human comprehensibility</li>
 </ul></li>
-<li>we subset our use of Scala to get more out of types
-<ul>
-<li>no side-effects</li>
-<li>no variance</li>
-<li>TODO: list more</li>
-</ul></li>
+<li>we subset our use of Scala to get more out of types</li>
 <li>we work hard to program with functions</li>
+</ul>
+</section>
+<section id="things-we-avoid" class="slide level2">
+<h1>things we avoid</h1>
+<ul>
+<li>side-effects</li>
+<li>nulls (replace with Option)</li>
+<li>exceptions (replace with ScalaZ’s \/ or EitherT)</li>
+<li>partial functions</li>
+<li>reflection (type erasure is good!)</li>
+<li>subtyping/variance</li>
+<li>overloading</li>
+</ul>
+</section>
+<section id="things-we-embrace" class="slide level2">
+<h1>things we embrace</h1>
+<ul>
+<li>both algebraic data types (case classes) <em>and</em> objects</li>
+<li>implicits (esp. for type classes)</li>
+<li>higher-kinded types</li>
+<li>existential and method-dependent types</li>
+<li>partially-applied types (type lambdas)</li>
+<li>post-fix notation</li>
+<li>type enrichments with implicits</li>
+<li>ScalaZ</li>
+</ul>
+</section>
+<section id="rich-apis-dsls" class="slide level2">
+<h1>rich APIs (DSLs)</h1>
+<p>for-yield works with lists. . . (they’re monads)</p>
+<table class="sourceCode scala numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="sourceCode"><pre><code class="sourceCode scala">scala&gt; <span class="kw">for</span> {
+     |   a &lt;- List(<span class="dv">1</span>,<span class="dv">2</span>)
+     |   b &lt;- List(<span class="dv">3</span>,<span class="dv">4</span>)
+     | } <span class="kw">yield</span> (a, b)
+
+res0: List[(Int, Int)] =
+    List((<span class="dv">1</span>,<span class="dv">3</span>), (<span class="dv">1</span>,<span class="dv">4</span>), (<span class="dv">2</span>,<span class="dv">3</span>), (<span class="dv">2</span>,<span class="dv">4</span>))</code></pre></td></tr></table>
+</section>
+<section id="rich-apis-dsls-1" class="slide level2">
+<h1>rich APIs (DSLs)</h1>
+<p>for-yield works with other things. . . (that are also monads)</p>
+<table class="sourceCode scala numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="sourceCode"><pre><code class="sourceCode scala">scala&gt; <span class="kw">for</span> { a &lt;- Some(<span class="dv">1</span>); b &lt;- Some(<span class="dv">2</span>) }
+     | <span class="kw">yield</span> (a + b)
+
+res0: Option[Int] = Some(<span class="dv">3</span>)
+
+scala&gt; <span class="kw">for</span> {
+     |   a &lt;- Some(<span class="dv">1</span>)
+     |   b &lt;- None: Option[Int]
+     | } <span class="kw">yield</span> (a + b)
+
+res1: Option[Int] = None</code></pre></td></tr></table>
+</section>
+<section id="rich-apis-dsls-2" class="slide level2">
+<h1>rich APIs (DSLs)</h1>
+<p>for-yield works for <em>your</em> things! Here’s a “free” monad example.</p>
+<table class="sourceCode scala numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="sourceCode"><pre><code class="sourceCode scala"><span class="kw">val</span> plan =
+  <span class="kw">for</span> {
+    a &lt;- call App1 <span class="dv">1</span>
+    b &lt;-
+      <span class="fu">fork</span>(call App2 <span class="fu">f</span>(a), call App3 <span class="fu">g</span>(a))
+    c &lt;- call App4 b retry <span class="fl">4.</span>times
+  } <span class="kw">yield</span> <span class="fu">h</span>(a, b, c)
+
+<span class="kw">val</span> task = <span class="fu">execute</span>(plan)
+<span class="kw">val</span> planReport = <span class="fu">graph</span>(plan)</code></pre></td></tr></table>
+<ul>
+<li>like an OOP command pattern, but better</li>
+<li>does nothing; we write interpreters for plans</li>
+<li>we can write multiple interpreters (like execute or graph)</li>
 </ul>
 </section>
 <section id="functional-programming" class="slide level2">
@@ -269,24 +383,39 @@ code > span.er { color: #ff0000; font-weight: bold; }
 12
 13
 14
-15
-16
 </pre></td><td class="sourceCode"><pre><code class="sourceCode scala"><span class="kw">object</span> OurService <span class="kw">extends</span> App {
 
   <span class="co">// our only side-effecting call</span>
   main.<span class="fu">unsafePerformIO</span>
 
-  <span class="kw">private</span> <span class="kw">def</span> main =
+  <span class="kw">private</span> <span class="kw">def</span> main: IO[Unit] =
     <span class="kw">for</span> {
       s &lt;- loadService
       _ &lt;- <span class="fu">startService</span>(s)
     } <span class="kw">yield</span> ()
 
-  <span class="co">// or with ScalaZ:</span>
-  <span class="co">//</span>
-  <span class="co">// loadService &gt;&gt;= startService</span>
+  ...
 
-...</code></pre></td></tr></table>
+}</code></pre></td></tr></table>
+</section>
+<section id="or-with-scalaz" class="slide level2">
+<h1>or with ScalaZ</h1>
+<table class="sourceCode scala numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="sourceCode"><pre><code class="sourceCode scala"><span class="kw">object</span> OurService <span class="kw">extends</span> SafeApp {
+
+  <span class="kw">override</span> <span class="kw">def</span> runc: IO[Unit] =
+    loadService &gt;&gt;= startService
+
+  ...
+
+}</code></pre></td></tr></table>
 </section>
 <section id="dangers-of-not-using-functions" class="slide level2">
 <h1>dangers of not using functions</h1>
@@ -298,21 +427,40 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>with functions, they <em>never</em> are</li>
 </ul>
 </section>
-<section id="scala-helps-us-fp" class="slide level2">
-<h1>Scala helps us FP</h1>
+<section id="headaches-that-bother-us" class="slide level2">
+<h1>headaches that bother us</h1>
 <ul>
-<li>immutable collections</li>
-<li>libraries like Scalaz</li>
+<li>weak type inference (relative to Damas-Milner in Haskell)</li>
+<li>weak tail call elimination</li>
+<li>global classpath (dependencies more easily conflict)</li>
+<li>verbosity (compared to Haskell)</li>
+<li>abusive use of OOP</li>
+</ul>
+<p>in Scala:</p>
+<pre class="sourceCode scala"><code class="sourceCode scala">    <span class="kw">sealed</span> <span class="kw">trait</span> Option[+A]
+    <span class="kw">case</span> <span class="kw">class</span> Some[+A](a: A) <span class="kw">extends</span> Option[A]
+    <span class="kw">case</span> <span class="kw">object</span> None <span class="kw">extends</span> Option[Nothing]</code></pre>
+<p>in Haskell:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">    <span class="kw">data</span> <span class="dt">Option</span> a <span class="fu">=</span> <span class="dt">Some</span> a <span class="fu">|</span> <span class="dt">None</span></code></pre>
+</section>
+<section id="headaches-that-bother-us-less" class="slide level2">
+<h1>headaches that bother us less</h1>
+<ul>
+<li>learning curve</li>
+<li>buggy IDEs</li>
+<li>resource-intensive IDEs</li>
+<li>performance problems with FP</li>
+<li>slow compiler times</li>
 </ul>
 </section>
-<section id="thats-all-for-now.-next-time" class="slide level2">
-<h1>that’s all for now. next time?</h1>
+<section id="thats-all-for-now-next-time" class="slide level2">
+<h1>that’s all for now; next time?</h1>
 <ul>
 <li>style/archtecture in Scala</li>
 <li>abstracting intelligently</li>
 <li>mastering implicits</li>
 <li>effect tracking (sync and async) in Scala</li>
-<li>for-yield comprehensions (basic monads)</li>
+<li>for-yield comprehensions</li>
 <li>error handling</li>
 <li>dependency injection in Scala</li>
 <li>SBT</li>
