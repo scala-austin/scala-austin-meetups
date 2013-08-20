@@ -67,9 +67,12 @@ a little about Scala at Rackspace
 ---------------------------------
 
 - Scala is relatively new to Rackspace
-- we automate/integrate legacy systems in our DCs
-- our domain + legacy application ⇒ complexity
-- correctness problems surface more than performance problems
+- we automate new and pre-existing systems in our DCs
+- our domain is complex
+    - our DCs have a high degree of variance
+    - diverse portfolio of services
+- our domain + legacy ⇒ even more complexity
+- our correctness problems carry more risk than our performance problems
 
 
 why Scala for the team, at first
@@ -109,7 +112,7 @@ still seeing how these pan out
     - currently Akka abandons much type-safety
 - improved talent pool
     - the pool is definitely smaller
-    - the Scala community at large if has much talent
+    - the Scala community at large has much talent
     - general JVM expertise ports to Scala
     - hard to find local expertise in Scala's type system
     - this meetup is part of the exploration
@@ -194,7 +197,7 @@ for-yield works for _your_ things!  Here's a "free" monad example.
 ~~~~ {.scala .numberLines}
 val plan =
   for {
-    a <- call App1 1
+    a <- call App1 app1Input
     b <-
       fork(call App2 f(a), call App3 g(a))
     c <- call App4 b retry 4.times
@@ -284,7 +287,7 @@ are the tasks running yet?
 headaches that bother us
 ------------------------
 
-- weak type inference (relative to Damas-Milner in Haskell)
+- weak type inference (relative to Haskell)
 - weak tail call elimination
 - global classpath (dependencies more easily conflict)
 - verbosity (compared to Haskell)
@@ -311,7 +314,7 @@ headaches that bother us less
 - learning curve
 - buggy IDEs
 - resource-intensive IDEs
-- performance problems with FP
+- performance problems with FP on the JVM
 - slow compiler times
 
 
@@ -327,3 +330,4 @@ that's all for now; next time?
 - dependency injection in Scala
 - SBT
 - Spark
+- Akka/Eventsourced/etc

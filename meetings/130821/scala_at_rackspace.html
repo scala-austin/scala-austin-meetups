@@ -183,9 +183,14 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h1>a little about Scala at Rackspace</h1>
 <ul>
 <li>Scala is relatively new to Rackspace</li>
-<li>we automate/integrate legacy systems in our DCs</li>
-<li>our domain + legacy application ⇒ complexity</li>
-<li>correctness problems surface more than performance problems</li>
+<li>we automate new and pre-existing systems in our DCs</li>
+<li>our domain is complex
+<ul>
+<li>our DCs have a high degree of variance</li>
+<li>diverse portfolio of services</li>
+</ul></li>
+<li>our domain + legacy ⇒ even more complexity</li>
+<li>our correctness problems carry more risk than our performance problems</li>
 </ul>
 </section>
 <section id="why-scala-for-the-team-at-first" class="slide level2">
@@ -232,7 +237,7 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <li>improved talent pool
 <ul>
 <li>the pool is definitely smaller</li>
-<li>the Scala community at large if has much talent</li>
+<li>the Scala community at large has much talent</li>
 <li>general JVM expertise ports to Scala</li>
 <li>hard to find local expertise in Scala’s type system</li>
 <li>this meetup is part of the exploration</li>
@@ -337,7 +342,7 @@ res1: Option[Int] = None</code></pre></td></tr></table>
 10
 </pre></td><td class="sourceCode"><pre><code class="sourceCode scala"><span class="kw">val</span> plan =
   <span class="kw">for</span> {
-    a &lt;- call App1 <span class="dv">1</span>
+    a &lt;- call App1 app1Input
     b &lt;-
       <span class="fu">fork</span>(call App2 <span class="fu">f</span>(a), call App3 <span class="fu">g</span>(a))
     c &lt;- call App4 b retry <span class="fl">4.</span>times
@@ -430,7 +435,7 @@ res1: Option[Int] = None</code></pre></td></tr></table>
 <section id="headaches-that-bother-us" class="slide level2">
 <h1>headaches that bother us</h1>
 <ul>
-<li>weak type inference (relative to Damas-Milner in Haskell)</li>
+<li>weak type inference (relative to Haskell)</li>
 <li>weak tail call elimination</li>
 <li>global classpath (dependencies more easily conflict)</li>
 <li>verbosity (compared to Haskell)</li>
@@ -449,7 +454,7 @@ res1: Option[Int] = None</code></pre></td></tr></table>
 <li>learning curve</li>
 <li>buggy IDEs</li>
 <li>resource-intensive IDEs</li>
-<li>performance problems with FP</li>
+<li>performance problems with FP on the JVM</li>
 <li>slow compiler times</li>
 </ul>
 </section>
@@ -465,6 +470,7 @@ res1: Option[Int] = None</code></pre></td></tr></table>
 <li>dependency injection in Scala</li>
 <li>SBT</li>
 <li>Spark</li>
+<li>Akka/Eventsourced/etc</li>
 </ul>
 </section>
 <!-- {{{{ dzslides core
