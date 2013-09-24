@@ -1,0 +1,193 @@
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  src:
+    local('Oswald Regular'),
+    local('Oswald-Regular'),
+    url(fonts/oswald.woff) format('woff');
+}
+
+body .syntaxhighlighter a,
+body .syntaxhighlighter div,
+body .syntaxhighlighter code,
+body .syntaxhighlighter table,
+body .syntaxhighlighter table td,
+body .syntaxhighlighter table tr,
+body .syntaxhighlighter table tbody,
+body .syntaxhighlighter table thead,
+body .syntaxhighlighter table caption,
+body .syntaxhighlighter textarea,
+body .syntaxhighlighter .gutter {
+  padding: 1px !important;
+  /*
+  font-family: "Source Code Pro Medium" !important;
+  font-size: 13px !important;
+  line-height: 14px !important;
+  */
+}
+
+html, .view body { background-color: black; counter-reset: slideidx; }
+
+body, .view section { background-color: white; border-radius: 12px }
+
+section, .view head > title {
+  font-family: 'Oswald', arial, serif;
+  font-size: 30px;
+}
+
+.view section:after {
+  counter-increment: slideidx;
+  content: counter(slideidx, decimal-leading-zero);
+  position: absolute; bottom: -80px; right: 100px;
+  color: white;
+}
+
+.view head > title {
+  color: white;
+  text-align: center;
+  margin: 1em 0 1em 0;
+}
+
+h1, h2 {
+  margin-top: 100px;
+  text-align: center;
+  font-size: 80px;
+}
+
+h3 {
+  margin: 0px 0 50px 200px;
+}
+
+h4 {
+  margin: 50px 0 0px 50px;
+}
+
+ul, ol, dl {
+    margin: 40px 40px;
+    width: 100%;
+}
+
+ul > li {
+    margin: 15px 50px;
+}
+
+dl {
+    margin: 50px 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}
+
+dt {
+    flex: 1 20%;
+    font-size: 25px;
+    text-align: left;
+}
+
+dd {
+    flex: 1 70%;
+    font-size: 20px;
+}
+
+p {
+  margin: 75px;
+  font-size: 50px;
+}
+
+blockquote {
+  height: 100%;
+  background-color: black;
+  color: white;
+  font-size: 60px;
+  padding: 50px;
+}
+
+blockquote:before {
+  content: open-quote;
+}
+
+blockquote:after {
+  content: close-quote;
+}
+
+blockquote q {
+  quotes: none;
+  position: relative;
+}
+
+blockquote footer {
+  background-color: black;
+  position: absolute;
+  color: white;
+}
+
+figure {
+  background-color: black;
+  width: 100%;
+  height: 100%;
+}
+
+figure > * {
+  position: absolute;
+}
+
+figure > img, figure > video {
+  width: 100%; height: 100%;
+}
+
+figcaption {
+  margin: 70px;
+  font-size: 50px;
+}
+
+iframe {
+  height: 475px;
+  width: 800px;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 40px;
+  text-align: right;
+  background-color: #F3F4F8;
+  border-top: 1px solid #CCC;
+}
+
+section {
+  -moz-transition: left 400ms linear 0s;
+  -webkit-transition: left 400ms linear 0s;
+  -ms-transition: left 400ms linear 0s;
+  transition: left 400ms linear 0s;
+}
+
+.view section {
+  -moz-transition: none;
+  -webkit-transition: none;
+  -ms-transition: none;
+  transition: none;
+}
+
+.view section[aria-selected] {
+  border: 5px red solid;
+}
+
+
+section { left: -150%; }
+
+section[aria-selected] { left: 0; }
+
+section[aria-selected] ~ section { left: +150%; }
+
+.incremental > * { opacity: 1; }
+
+.incremental > *[aria-selected] { opacity: 1; }
+
+.incremental > *[aria-selected] ~ * { opacity: 0; }
+
+#progress-bar {
+  height: 2px;
+  background: #AAA;
+}
