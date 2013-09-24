@@ -18,7 +18,7 @@ object SmallStackSafe extends App {
 
 
 object LargeStackUnsafe extends App {
-  go("repeat(10000)", effect.repeat(10000))
+  go("repeat(100000)", effect.repeat(100000))
 }
 
 
@@ -42,7 +42,7 @@ object ScalazStackSafe extends App {
       true
     }
 
-  go("repeat(10000)", repeat(zEffect, 10000))
+  go("repeat(100000)", repeat(zEffect, 100000))
 
 }
 

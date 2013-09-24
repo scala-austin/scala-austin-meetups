@@ -21,7 +21,7 @@ object ScalazTaskSequence extends App {
   import scalaz.syntax.traverse._
 
   val work: Task[List[Int]] =
-    (List(1, 2, 3, 4, 5) map effect).sequenceU
+    (List(1, 2, 3, 4, 5) map effect).sequence
 
   report(work)
 

@@ -29,7 +29,7 @@
 </section>
 
 <section>
-  <h2>What is "OO"?</h2>
+  <h2>What is “OO”?</h2>
   <ul class="incremental">
     <li> Is it modularity?
     <li> Is it inheritance?
@@ -38,14 +38,14 @@
 </section>
 
 <section>
-  <h2>Scala seems to do "OO" well</h2>
-  <h4>(even if we can't agree on what "OO" is).</h4>
+  <h2>Scala seems to do OO well</h2>
+  <h4>(even if we can't agree on what OO is).</h4>
 </section>
 
 <section>
-  <h2>What is "FP"?</h2>
+  <h2>What is “FP”?</h2>
   <ul class="incremental">
-    <li> Is "function" the same as in math?
+    <li> Is “function” the same as in math?
     <li> Must we have first-class support for functions?
   </ul>
 </section>
@@ -56,14 +56,6 @@
     Scala is also a functional language in the sense that every function is a
     value.
   </blockquote>
-</section>
-
-<section>
-  <h2>Scala has some good support for FP</h2>
-  <ul class="incremental">
-    <li> first-class functions
-    <li> expressions rather than statements
-  </ul>
 </section>
 
 <section>
@@ -80,19 +72,27 @@
     can be evaluated at any time.  This relieves the programmer of the burden
     of prescribing the flow of control.  Since expressions can be evaluated at
     any time, one can freely replace variables by their values and vice versa -
-    that is, programs are “referentially transparent”.  This freedom helps make
+    that is, programs are “referentially transparent.”  This freedom helps make
     functional programs more tractable mathematically than their conventional
     counterparts.
   </div>
 </section>
 
 <section>
-  <h2>In practice, Scala has many side-effects</h2>
-  <h4>maybe not an "OO/FP hybrid"… perhaps "OO/fp"</h4>
+  <h2>Scala has some good support for FP</h2>
+  <ul class="incremental">
+    <li> first-class functions
+    <li> expressions rather than statements
+  </ul>
 </section>
 
 <section>
-  <h2>We can tame Scala's side-effects with</h2>
+  <h2>In practice, Scala has many side-effects</h2>
+  <h4>(feels more “OO/fp” than “OO/FP”).</h4>
+</section>
+
+<section>
+  <h2>We can tame Scala’s side-effects with</h2>
   <ul>
     <li> discipline
     <li> library support (especially Scalaz)
@@ -100,17 +100,14 @@
 </section>
 
 <section>
-  <h4>FP means Substitutability</h4>
-<pre class="brush: scala;">
-</pre>
-
+  <h2>Let's look at code</h2>
 </section>
 
 <section>
   <h2>references</h2>
   <ul>
+    <li> <a href="http://www.cse.chalmers.se/~rjmh/Papers/whyfp.html">“Why FP Matters,” John Hughes</a>
     <li> <a href="http://typelevel.org">typelevel.org</a>
-    <li> <a href="http://docs.typelevel.org">docs.typelevel.org</a>
     <li> <a href="http://youtu.be/kcfIH3GYXMI">Scalaz "For the Rest of Us," Adam Rosien, BASE, Aug 2012</a>
     <li> <a href="http://youtu.be/KzoqOVD7mvE">Scala 7, Lars Hupel, NEScala 2013</a>
     <li> <a href="http://eed3si9n.com/learning-scalaz/">Learning Scalaz, Eugene Yokota</a>
@@ -118,61 +115,18 @@
 </section>
 
 <section>
-  <h4>check out this code</h4>
-<pre class="brush: scala;">
-class Hello {
-  abcdefghijklmnopqrstuv0123456789
-  def hello: Int = 1
-}
-
-trait Hello {
-  def hello: Int => Int =
-    i =>  i + 1
-}
-</pre>
-
-</section>
-
-<section>
-  <p>Some random text: But I've never been to the moon! You can see how I lived before I met you. Also Zoidberg.
-  I could if you hadn't turned on the light and shut off my stereo.</p>
-  <div role="note">Some notes. They are only visible using onstage shell.</div>
-</section>
-
-<section>
-  <blockquote>
-    Who's brave enough to fly into something we all keep calling a death sphere?
-  </blockquote>
-  <details>
-    <p>In the onstage shell, notes scroll rather than overflow:</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ac dui eu est feugiat lacinia sit amet nec leo. Mauris eu ipsum leo. Nulla mi odio, cursus sed sollicitudin non, fringilla id magna. Suspendisse sit amet posuere elit. Maecenas iaculis, turpis a placerat imperdiet, libero lorem feugiat nisi, nec tincidunt diam nibh sit amet massa. Vestibulum quis adipiscing tellus. Maecenas sollicitudin sodales pulvinar. Donec dui ipsum, bibendum facilisis consequat interdum, tempus ut mauris. Aliquam ut dolor nec odio scelerisque bibendum quis in neque. Aliquam dui dui, pulvinar quis fermentum quis, gravida eu augue. Nunc tristique dolor a urna pulvinar bibendum. Curabitur mollis cursus neque, in scelerisque metus porta non. Donec tempor enim in nibh vestibulum et convallis nisi malesuada. Duis ut lectus sed metus venenatis porttitor id pharetra quam. Suspendisse sapien turpis, ornare in molestie et, gravida eget turpis.
-    </p>
-  </details>
-</section>
-
-<section>
-    <h2>Part two</h2>
-</section>
-
-<section>
-    <figure>
-      <!--
-      <img src="http://placekitten.com/g/800/600">
-      -->
-      <figcaption>An image</figcaption>
-    </figure>
-    <div role="note">Kittens are so cute!</div>
-</section>
-
-<section>
-    <figure> <!-- Videos are automatically played -->
-      <video src="http://videos-cdn.mozilla.net/brand/Mozilla_Firefox_Manifesto_v0.2_640.webm" poster="http://www.mozilla.org/images/about/poster.jpg"></video>
-      <figcaption>A video</figcaption>
-    </figure>
-</section>
-
-<section>
-    <h2>End!</h2>
+  <h3>Next Time?</h3>
+  <ul class="compressed">
+    <li> style/architecture in Scala
+    <li> abstracting intelligently
+    <li> mastering implicits
+    <li> for-yield comprehensions (monads)
+    <li> error handling
+    <li> dependency injection in Scala
+    <li> SBT
+    <li> Spark
+    <li> Akka/Eventsourced/etc
+  </ul>
 </section>
 
 <div id="progress-bar"></div>

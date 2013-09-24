@@ -18,7 +18,7 @@ object StdFutureControlledEffects extends App {
 
   val work: Future[Vector[Int]] =
     List(1, 2, 3, 4, 5)
-      .foldLeft(Future{Vector.empty[Int]}) { (acc, i) =>
+      .foldLeft(Future{ Vector.empty[Int] }) { (acc, i) =>
         acc flatMap { is => effect(is :+ i) }
       }
 
