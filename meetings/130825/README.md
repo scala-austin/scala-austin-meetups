@@ -1,8 +1,11 @@
 Effects Without Side-effects Meeting Content
 ============================================
 
-For: Austin Scala Enthusiasts
-Given: September 25, 2013
+For:
+    Austin Scala Enthusiasts
+
+Given:
+    September 25, 2013
 
 
 Slides
