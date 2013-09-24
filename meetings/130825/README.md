@@ -9,7 +9,7 @@ Slides
 ------
 
 Clone this repository, and just look at the index.html file in a browser.  Use
-arrow keys to navigate.  The 'o' key toggles between the presentation view and
+arrow keys to navigate.  The `o` key toggles between the presentation view and
 a slide gallery.
 
 
