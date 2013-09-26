@@ -47,16 +47,16 @@ object ScalazStackSafe extends App {
 
 object MonadicIo extends App {
 
-  def sideEffecting(i: Int): IO[Int] =
+  def effect(i: Int): IO[Int] =
     IO { print(s"EFFECT($i) "); i }
 
   val ioFib: IO[(Int, Int, Int, Int, Int)] =
     for {
-      a <- sideEffecting(1)
-      b <- sideEffecting(1)
-      c <- sideEffecting(a + b)
-      d <- sideEffecting(b + c)
-      e <- sideEffecting(c + d)
+      a <- effect(1)
+      b <- effect(1)
+      c <- effect(a + b)
+      d <- effect(b + c)
+      e <- effect(c + d)
     } yield (a, b, c, d, e)
 
   run("ioFib", ioFib)
