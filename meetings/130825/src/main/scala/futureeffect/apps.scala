@@ -22,7 +22,7 @@ object StdFutureControlledEffects extends App {
         acc flatMap { is => effect(is :+ i) }
       }
 
-  report(work)
+  run(work)
 
 }
 
@@ -40,6 +40,6 @@ object StdFutureControlledEffectsWithErrors extends App {
         }
       }
 
-  report(work)
+  run(work)
 
 }

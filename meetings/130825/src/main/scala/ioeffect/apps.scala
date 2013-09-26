@@ -3,10 +3,8 @@ package ioeffect
 
 
 object IoWithoutRt extends App {
-  go("twice(effectVal)", twice(effectVal))
-  go("twiceByName(effectVal)", twiceByName(effectVal))
-  go("twice(effect)", twice(effect))
-  go("twice(effectDef)", twice(effectDef))
-  go("twiceByName(effect)", twiceByName(effect))
-  go("twiceByName(effectDef)", twiceByName(effectDef))
+  run("twice(effectVal)", twice(effectVal))
+  run("twiceByName(effectVal)", twiceByName(effectVal))
+  run("twice(effectDef)", twice(effectDef))
+  run("twiceByName(effectDef)", twiceByName(effectDef))
 }

@@ -73,7 +73,7 @@ ul > li {
 }
 
 dl {
-    margin: 50px 100px;
+    margin: 50px 25px;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
@@ -82,7 +82,8 @@ dl {
 dt {
     flex: 1 20%;
     font-size: 25px;
-    text-align: left;
+    text-align: right;
+    padding: 10px;
 }
 
 dd {

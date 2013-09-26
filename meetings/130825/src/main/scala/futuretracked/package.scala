@@ -12,7 +12,7 @@ package object futuretracked {
       a
     }
 
-  def report[A](task: Task[A]) = {
+  def run[A](task: Task[A]) = {
     val res = task.attemptRun
     println(s"RESULT: ${res}")
   }

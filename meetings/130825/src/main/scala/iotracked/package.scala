@@ -3,17 +3,14 @@ package org.atxscala.sideeffects
 
 package object iotracked {
 
-  def effect: IO[Boolean] =
+  def effectDef: IO[Boolean] =
     IO {
       print("EFFECT!  ")
       true
     }
 
   val effectVal: IO[Boolean] =
-    effect
-
-  def effectDef: IO[Boolean] =
-    effect
+    effectDef
 
   def twice[A](a: IO[A]): IO[(A, A)] =
     a map { v =>  (v, v) }
@@ -21,7 +18,7 @@ package object iotracked {
   def twiceByName[A](a: => IO[A]): IO[(A, A)] =
     a map { v => (v, v) }
 
-  def go[A]
+  def run[A]
       (msg: String,
         a: => { def unsafePerformIO(): A })
       : Unit = {
@@ -29,6 +26,6 @@ package object iotracked {
     println(s"\nANSWER: ${a.unsafePerformIO}")
   }
 
-  println("PACKAGE INIT OVER")
+  println("PACKAGE OBJECT INIT OVER")
 
 }

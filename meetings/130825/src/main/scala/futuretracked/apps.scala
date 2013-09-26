@@ -23,7 +23,7 @@ object ScalazTaskSequence extends App {
   val work: Task[List[Int]] =
     (List(1, 2, 3, 4, 5) map effect).sequence
 
-  report(work)
+  run(work)
 
 }
 
@@ -33,7 +33,7 @@ object ScalazTaskGather extends App {
   val work: Task[List[Int]] =
     Task.gatherUnordered(List(1, 2, 3, 4, 5) map effect)
 
-  report(work)
+  run(work)
 
 }
 
@@ -48,8 +48,8 @@ object ScalazTaskWithErrors extends App {
     else effect(i)
 
   val work: Task[List[Int]] =
-    (List(1, 2, 3, 4, 5) map toWork).sequenceU
+    (List(1, 2, 3, 4, 5) map toWork).sequence
 
-  report(work)
+  run(work)
 
 }

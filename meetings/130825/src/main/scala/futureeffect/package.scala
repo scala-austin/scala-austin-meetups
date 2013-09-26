@@ -15,7 +15,7 @@ package object futureeffect {
       a
     }
 
-  def report[A](future: Future[A]) = {
+  def run[A](future: Future[A]) = {
     future.onComplete { res =>
       println(s"RESULT: ${res}")
     }

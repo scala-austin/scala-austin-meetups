@@ -3,22 +3,20 @@ package iotracked
 
 
 object IoWithRt extends App {
-  go("twice(effectVal)", twice(effectVal))
-  go("twiceByName(effectVal)", twiceByName(effectVal))
-  go("twice(effect)", twice(effect))
-  go("twice(effectDef)", twice(effectDef))
-  go("twiceByName(effect)", twiceByName(effect))
-  go("twiceByName(effectDef)", twiceByName(effectDef))
+  run("twice(effectVal)", twice(effectVal))
+  run("twiceByName(effectVal)", twiceByName(effectVal))
+  run("twice(effectDef)", twice(effectDef))
+  run("twiceByName(effectDef)", twiceByName(effectDef))
 }
 
 
 object SmallStackSafe extends App {
-  go("repeat(3)", effect.repeat(3))
+  run("repeat(3)", effectDef.repeat(3))
 }
 
 
 object LargeStackUnsafe extends App {
-  go("repeat(100000)", effect.repeat(100000))
+  run("repeat(100000)", effectDef.repeat(100000))
 }
 
 
@@ -42,7 +40,7 @@ object ScalazStackSafe extends App {
       true
     }
 
-  go("repeat(100000)", repeat(zEffect, 100000))
+  run("repeat(100000)", repeat(zEffect, 100000))
 
 }
 
@@ -61,6 +59,6 @@ object MonadicIo extends App {
       e <- sideEffecting(c + d)
     } yield (a, b, c, d, e)
 
-  go("ioFib", ioFib)
+  run("ioFib", ioFib)
 
 }
