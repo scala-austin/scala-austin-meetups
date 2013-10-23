@@ -30,13 +30,18 @@ object InjectionBuild extends Build with Dependencies {
 
   lazy val root =
     Project("di", file("."))
-      .aggregate(spring, cakeSimple)
+      .aggregate(simple, simpleSpring, simpleCake)
 
-  lazy val spring =
-    Project("di-spring", file("di-spring"))
+  lazy val simple =
+    Project("di-simple", file("simple"))
+
+  lazy val simpleSpring =
+    Project("di-simple-spring", file("simple-spring"))
       .settings(libraryDependencies += springContext)
+      .dependsOn(simple)
 
-  lazy val cakeSimple =
-    Project("di-cake-simple", file("di-cake-simple"))
+  lazy val simpleCake =
+    Project("di-simple-cake", file("simple-cake"))
+      .dependsOn(simple)
 
 }
