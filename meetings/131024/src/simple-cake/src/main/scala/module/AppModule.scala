@@ -2,9 +2,9 @@ package org.atxscala.injection.simple
 package config
 
 
-trait AppConfig {
-  
-  self: StoreConfig =>
+trait AppModule {
+
+  self: StoreModule =>
 
   def app: Runnable = new ExampleCrawl(store)
 

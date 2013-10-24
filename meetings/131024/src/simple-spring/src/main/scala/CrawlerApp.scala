@@ -10,12 +10,12 @@ import store.FriendshipStore
 
 object CrawlerApp {
 
-  def test = loadApp(classOf[MemStoreConfig])
+  def test = loadApp(classOf[MemStoreModule])
 
-  def prod = loadApp(classOf[DbStoreConfig])
+  def prod = loadApp(classOf[DbStoreModule])
 
-  private def loadApp[C <: StoreConfig](storeConfig: Class[C]) = {
-    new AnnotationConfigApplicationContext(classOf[AppConfig], storeConfig)
+  private def loadApp[C <: StoreModule](storeModule: Class[C]) = {
+    new AnnotationConfigApplicationContext(classOf[AppModule], storeModule)
       .getBean(classOf[Runnable])
   }
 

@@ -5,12 +5,12 @@ package config
 import store._
 
 
-trait StoreConfig {
+trait StoreModule {
   def store: FriendshipStore
 }
 
 
-trait DbStoreConfig extends StoreConfig {
+trait DbStoreModule extends StoreModule {
 
   val connection: DbConnection
 
@@ -21,7 +21,7 @@ trait DbStoreConfig extends StoreConfig {
 }
 
 
-trait MemStoreConfig extends StoreConfig {
+trait MemStoreModule extends StoreModule {
 
   override def store = new MemFriendshipStore
 

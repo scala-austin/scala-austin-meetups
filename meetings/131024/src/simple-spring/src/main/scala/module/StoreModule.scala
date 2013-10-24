@@ -9,13 +9,13 @@ import org.springframework.context.annotation.{Bean, Configuration, Scope}
 import store._
 
 
-trait StoreConfig {
+trait StoreModule {
   def store: FriendshipStore
 }
 
 
 @Configuration
-class DbStoreConfig extends StoreConfig {
+class DbStoreModule extends StoreModule {
 
   @Bean @Scope(SCOPE_SINGLETON)
   def connection = DbConnection.fromDriverName("hello")
@@ -28,7 +28,7 @@ class DbStoreConfig extends StoreConfig {
 
 
 @Configuration
-class MemStoreConfig extends StoreConfig {
+class MemStoreModule extends StoreModule {
 
   @Bean override def store = new MemFriendshipStore
 

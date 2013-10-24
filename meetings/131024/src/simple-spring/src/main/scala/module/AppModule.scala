@@ -7,11 +7,11 @@ import org.springframework.context.annotation.{Bean, Configuration, Import}
 
 
 @Configuration
-class AppConfig {
+class AppModule {
 
-  @Autowired var storeConfig: StoreConfig = null
+  @Autowired var storeModule: StoreModule = null
 
   @Bean def app: Runnable =
-    new ExampleCrawl(storeConfig.store)
+    new ExampleCrawl(storeModule.store)
 
 }
