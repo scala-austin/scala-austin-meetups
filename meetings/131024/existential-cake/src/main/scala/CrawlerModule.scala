@@ -1,12 +1,12 @@
-package org.atxscala.injection.simple
+package org.atxscala.injection.existential
 
 
 import scala.annotation.tailrec
 
-import store.FriendshipStore
 
+trait CrawlerModule {
 
-class Crawler(store: FriendshipStore) {
+  self: FriendshipModule =>
 
   type Degree = Int
 
@@ -22,11 +22,13 @@ class Crawler(store: FriendshipStore) {
           workList
             .flatMap {
               case (i, d) =>
-                if (d > 0) store friendsOf i map { (_, d - 1) } else List.empty
-            }.filter { case (u, d) => ! acc.contains(u.id) }
-        val nextAcc = acc ++ (next map { case (u, d) => (u.id, u) })
+                if (d > 0) friendsOf(i) map { (_, d - 1) } else List.empty
+            }.filter { case (u, d) => ! acc.contains(idOf(u)) }
+        val nextAcc = acc ++ (next map { case (u, d) => (idOf(u), u) })
         val nextWorkList =
-          next filter { case (_, d) => d > 0 } map { case (u, d) => (u.id, d) }
+          next
+            .filter { case (_, d) => d > 0 }
+            .map { case (u, d) => (idOf(u), d) }
         loop(nextAcc, nextWorkList)
       }
     }

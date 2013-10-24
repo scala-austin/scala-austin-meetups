@@ -1,4 +1,4 @@
-package org.atxscala.injection.spring
+package org.atxscala.injection.simple
 
 
 import store.FriendshipStore
@@ -11,9 +11,9 @@ class ExampleCrawl(store: FriendshipStore) extends Runnable {
     val crawler = new Crawler(store)
 
     val a = store.createUser("A", "a@example")
-    val b = store.createUser("B", "a@example")
-    val c = store.createUser("C", "a@example")
-    val d = store.createUser("D", "a@example")
+    val b = store.createUser("B", "b@example")
+    val c = store.createUser("C", "c@example")
+    val d = store.createUser("D", "d@example")
 
     store.setFriendOf(a.id, b.id)
     store.setFriendOf(b.id, c.id)

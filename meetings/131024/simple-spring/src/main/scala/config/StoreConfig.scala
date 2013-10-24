@@ -1,8 +1,10 @@
-package org.atxscala.injection.spring
+package org.atxscala.injection.simple
 package config
 
 
-import org.springframework.context.annotation.{Bean, Configuration}
+import org.springframework.beans.factory.config.ConfigurableBeanFactory._
+import org.springframework.context.annotation.{Bean, Configuration, Scope}
+
 
 import store._
 
@@ -13,17 +15,20 @@ trait StoreConfig {
 
 
 @Configuration
-class ProdStoreConfig extends StoreConfig {
+class DbStoreConfig extends StoreConfig {
 
-  val connection = DbConnection
+  @Bean @Scope(SCOPE_SINGLETON)
+  def connection = DbConnection.fromDriverName("hello")
 
   @Bean override def store = new DbFriendshipStore(connection)
+
+  @Bean def anotherStore = new DbFriendshipStore(connection)
 
 }
 
 
 @Configuration
-class TestStoreConfig extends StoreConfig {
+class MemStoreConfig extends StoreConfig {
 
   @Bean override def store = new MemFriendshipStore
 

@@ -1,4 +1,4 @@
-package org.atxscala.injection.spring
+package org.atxscala.injection.simple
 
 
 import org.springframework.context.annotation.
@@ -10,9 +10,9 @@ import store.FriendshipStore
 
 object CrawlerApp {
 
-  def test = loadApp(classOf[TestStoreConfig])
+  def test = loadApp(classOf[MemStoreConfig])
 
-  def prod = loadApp(classOf[ProdStoreConfig])
+  def prod = loadApp(classOf[DbStoreConfig])
 
   private def loadApp[C <: StoreConfig](storeConfig: Class[C]) = {
     new AnnotationConfigApplicationContext(classOf[AppConfig], storeConfig)

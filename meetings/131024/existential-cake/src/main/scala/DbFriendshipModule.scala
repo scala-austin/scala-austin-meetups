@@ -1,19 +1,28 @@
-package org.atxscala.injection.simple
-package store
+package org.atxscala.injection.existential
 
 
+import java.util.UUID
 import scala.collection.mutable.{HashMap, Map, MultiMap, Set}
 
 
-final class MemFriendshipStore extends FriendshipStore {
+trait DbFriendshipModule extends FriendshipModule {
+
+  type User = UuidUser
+  type UserId = UUID
+
+  // we'll just pretend like we're using this DB connection, even though we're
+  // actually just doing in-memory calculations
+  //
+  val connection: DbConnection
 
   def createUser(name: String, email: String) =
     synchronized {
-      val user = new User(nextId, name, email)
+      val user = UuidUser(nextId, name, email)
       users += (user.id -> user)
-      nextId = nextId + 1
       user
     }
+
+  def idOf(user: User): UserId = user.id
 
   def setFriendOf(src: UserId, target: UserId) =
     synchronized { friendships addBinding (src, target) }
@@ -23,7 +32,9 @@ final class MemFriendshipStore extends FriendshipStore {
       (friendships get src).toSet.flatten.flatMap { users get _ }
     }
 
-  private var nextId: UserId = 1L
+  case class UuidUser(id: UserId, name: String, email: String)
+
+  private def nextId: UserId = UUID.randomUUID
 
   private val users: Map[UserId, User] = Map.empty
 

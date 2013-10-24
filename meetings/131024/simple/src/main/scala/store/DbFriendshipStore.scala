@@ -1,9 +1,5 @@
-package org.atxscala.injection.spring
+package org.atxscala.injection.simple
 package store
-
-
-trait DbConnection
-object DbConnection extends DbConnection
 
 
 final class DbFriendshipStore(conn: DbConnection) extends FriendshipStore {
@@ -13,13 +9,19 @@ final class DbFriendshipStore(conn: DbConnection) extends FriendshipStore {
   //
   private val delegate = new MemFriendshipStore
 
-  def createUser(name: String, email: String) =
+  def createUser(name: String, email: String) = {
+    assert(conn != null)
     delegate createUser (name, email)
+  }
 
-  def setFriendOf(src: Long, target: Long) =
+  def setFriendOf(src: UserId, target: UserId) = {
+    assert(conn != null)
     delegate setFriendOf (src, target)
+  }
 
-  def friendsOf(src: Long) =
+  def friendsOf(src: UserId) = {
+    assert(conn != null)
     delegate friendsOf src
+  }
 
 }

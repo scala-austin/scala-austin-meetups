@@ -1,4 +1,4 @@
-package org.atxscala.injection.spring
+package org.atxscala.injection.simple
 package config
 
 
@@ -10,16 +10,18 @@ trait StoreConfig {
 }
 
 
-trait ProdStoreConfig extends StoreConfig {
+trait DbStoreConfig extends StoreConfig {
 
-  val connection = DbConnection
+  val connection: DbConnection
 
   override def store = new DbFriendshipStore(connection)
+
+  def anotherStore = new DbFriendshipStore(connection)
 
 }
 
 
-trait TestStoreConfig extends StoreConfig {
+trait MemStoreConfig extends StoreConfig {
 
   override def store = new MemFriendshipStore
 

@@ -1,8 +1,8 @@
-package org.atxscala.injection.spring
+package org.atxscala.injection.simple
 
 
 import config._
-import store.FriendshipStore
+import store._
 
 
 trait CrawlerApp extends App with AppConfig with StoreConfig {
@@ -10,5 +10,11 @@ trait CrawlerApp extends App with AppConfig with StoreConfig {
 }
 
 
-object TestCrawlerApp extends CrawlerApp with TestStoreConfig
-object ProdCrawlerApp extends CrawlerApp with ProdStoreConfig
+object TestCrawlerApp extends CrawlerApp with MemStoreConfig
+
+
+object ProdCrawlerApp
+    extends {
+      val connection = DbConnection fromDriverName "mydatabase.driver.name"
+    }
+    with CrawlerApp with DbStoreConfig

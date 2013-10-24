@@ -1,4 +1,4 @@
-package org.atxscala.injection.spring
+package org.atxscala.injection.simple
 
 
-case class User(id: Long, name: String, email: String)
+case class User(id: UserId, name: String, email: String)

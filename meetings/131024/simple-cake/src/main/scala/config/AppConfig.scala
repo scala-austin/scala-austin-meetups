@@ -1,4 +1,4 @@
-package org.atxscala.injection.spring
+package org.atxscala.injection.simple
 package config
 
 

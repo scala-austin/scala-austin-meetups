@@ -1,4 +1,4 @@
-package org.atxscala.injection.spring
+package org.atxscala.injection.simple
 package config
 
 
@@ -10,8 +10,8 @@ import org.springframework.context.annotation.{Bean, Configuration, Import}
 class AppConfig {
 
   @Autowired var storeConfig: StoreConfig = null
-  
-  @Bean def app: Runnable = 
+
+  @Bean def app: Runnable =
     new ExampleCrawl(storeConfig.store)
 
 }

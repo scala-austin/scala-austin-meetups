@@ -1,19 +1,23 @@
-package org.atxscala.injection.simple
-package store
+package org.atxscala.injection.existential
 
 
 import scala.collection.mutable.{HashMap, Map, MultiMap, Set}
 
 
-final class MemFriendshipStore extends FriendshipStore {
+trait MemFriendshipModule extends FriendshipModule {
+
+  type User = LongUser
+  type UserId = Long
 
   def createUser(name: String, email: String) =
     synchronized {
-      val user = new User(nextId, name, email)
+      val user = LongUser(nextId, name, email)
       users += (user.id -> user)
       nextId = nextId + 1
       user
     }
+
+  def idOf(user: User): UserId = user.id
 
   def setFriendOf(src: UserId, target: UserId) =
     synchronized { friendships addBinding (src, target) }
@@ -22,6 +26,8 @@ final class MemFriendshipStore extends FriendshipStore {
     synchronized {
       (friendships get src).toSet.flatten.flatMap { users get _ }
     }
+
+  case class LongUser(id: UserId, name: String, email: String)
 
   private var nextId: UserId = 1L
 

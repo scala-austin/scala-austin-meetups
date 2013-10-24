@@ -30,7 +30,12 @@ object InjectionBuild extends Build with Dependencies {
 
   lazy val root =
     Project("di", file("."))
-      .aggregate(simple, simpleSpring, simpleCake)
+      .aggregate(
+        simple,
+        simpleSpring,
+        simpleCake,
+        simpleManual,
+        existentialCake)
 
   lazy val simple =
     Project("di-simple", file("simple"))
@@ -43,5 +48,12 @@ object InjectionBuild extends Build with Dependencies {
   lazy val simpleCake =
     Project("di-simple-cake", file("simple-cake"))
       .dependsOn(simple)
+
+  lazy val simpleManual =
+    Project("di-simple-manual", file("simple-manual"))
+      .dependsOn(simple)
+
+  lazy val existentialCake =
+    Project("di-existential-cake", file("existential-cake"))
 
 }
