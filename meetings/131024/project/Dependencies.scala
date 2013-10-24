@@ -11,7 +11,7 @@ trait Dependencies {
     val spring = "3.2.4.RELEASE"
     val scalaCheck = "1.10.1"
     val scalaTest = "2.0.RC1-SNAP4"
-    val scalaZ = "7.1.0-M3"  // pinned by Argonaut
+    val scalaZ = "7.1.0-M3"
   }
 
   val guava = "com.google.guava" % "guava" % v.guava
