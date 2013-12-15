@@ -13,7 +13,7 @@ package object iotracked {
     effectDef
 
   def twice[A](a: IO[A]): IO[(A, A)] =
-    a map { v =>  (v, v) }
+    a map { v => (v, v) }
 
   def twiceByName[A](a: => IO[A]): IO[(A, A)] =
     a map { v => (v, v) }
