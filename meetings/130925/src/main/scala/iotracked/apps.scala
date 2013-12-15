@@ -59,6 +59,19 @@ object MonadicIo extends App {
       e <- effect(c + d)
     } yield (a, b, c, d, e)
 
+  val ioFibDesugared: IO[(Int, Int, Int, Int, Int)] =
+    effect(1) flatMap { a =>
+      effect(1) flatMap { b =>
+        effect(a + b) flatMap { c =>
+          effect(b + c) flatMap { d =>
+            effect (c + d) map { e =>
+              (a, b, c, d, e)
+            }
+          }
+        }
+      }
+    }
+
   run("ioFib", ioFib)
 
 }
