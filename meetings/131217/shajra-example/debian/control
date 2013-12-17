@@ -1,0 +1,15 @@
+Source: yourorg-yourapp
+Section: misc
+Priority: extra
+Maintainer: Your App Maintainers <yourapp@yourorg.com>
+Build-Depends: debhelper (>= 9.0), git (>= 1:1.7), openjdk-7-jre-headless, perl
+Standards-Version: 3.9.4
+Homepage: http://yourorg.com/yourapp
+
+Package: yourorg-yourapp-server
+Architecture: all
+Depends: adduser (>= 3.113+nmu3), openjdk-7-jre-headless
+Description: example Debian package
+ This is an example Debian packaging for project presented at the December 17,
+ 2013 meetup of the Austin Scala Enthusiasts.  The topic was on improved builds
+ with SBT.  This packaging illustrates integration of SBT with Debian.

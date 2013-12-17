@@ -1,0 +1,13 @@
+# Properties to replace variables in Debian control information files.
+
+
+PACKAGE_ROOT="yourorg-yourapp"
+PACKAGE_SERVER="yourorg-yourapp-server"
+
+SERVER_CONFIG_FILE="/etc/yourorg/yourapp.conf"
+SERVER_USER="yourorg-yourapp"
+SERVER_USER_HOME="/var/run/$SERVER_USER"
+SERVER_JVM_OPTS="-d64 -Xmx1024m"
+SERVER_JAR_NAME="$PACKAGE_SERVER.jar"
+SERVER_JAR_PATH="/usr/share/$PACKAGE_ROOT/lib/$SERVER_JAR_NAME"
+SERVER_JAVA_BIN='/usr/lib/jvm/java-7-openjdk-$(dpkg --print-architecture)/bin/java'

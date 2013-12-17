@@ -1,0 +1,47 @@
+#!/usr/bin/make -f
+#
+# This is for the most part a default Debhelper-based rules file.  There's two
+# activities that are out of the norm performed with "override" targets below.
+#
+#     1. generate control information files and scripts from *.in templates
+#
+#     2. generates a new changelog with the "SNAPSHOT" version substituted out.
+
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+ifndef DH_DESTDIR
+DH_DESTDIR=..
+endif
+
+package_server=yourorg-yourapp-server
+
+properties_substitute_script=debian/properties-substitute
+template_in=$(wildcard debian/*.in)
+template_out=$(patsubst %.in,%,$(template_in))
+
+changelog_version_script=debian/changelog-version-update
+version=$(shell debian/version)
+changelog_in=debian/changelog
+changelog_out=debian/$(package_server).changelog
+
+
+%:
+	dh $@
+
+override_dh_auto_build: $(properties_substitute_script) $(template_in)
+	$(foreach f, \
+		$(template_in), \
+		$(properties_substitute_script) $(f) > $(patsubst %.in, %, $(f)) ;)
+	dh_auto_build
+
+override_dh_installchangelogs: $(changelog_version_script) $(changelog_in)
+	$(changelog_version_script) $(changelog_in) > $(changelog_out)
+	dh_installchangelogs
+
+override_dh_clean:
+	dh_clean $(changelog_out) $(template_out)
+
+override_dh_builddeb:
+	dh_builddeb --destdir="$(DH_DESTDIR)"

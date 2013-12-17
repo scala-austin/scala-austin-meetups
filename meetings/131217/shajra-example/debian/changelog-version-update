@@ -1,0 +1,153 @@
+#!/bin/sh -e
+#
+# Outputs to standard output a changelog based upon one supplied and Git tags.
+
+
+ROOT="$(readlink -f "$(dirname $0)/../")"
+
+
+main()
+{
+    local changelog_path="${1:-"$ROOT/debian/changelog"}"
+    verify_changelog_path "$changelog_path"
+    local version_pair; version_pair="$(changelog_versions "$changelog_path")"
+    local snapshot_version="$(first $version_pair)"
+    local next_version="$(second $version_pair)"
+    print_new_changelog "$changelog_path" "$snapshot_version" "$next_version"
+}
+
+
+verify_changelog_path()
+{
+    local changelog_path="$1"
+    if [ ! \( -r "$changelog_path" -a -f "$changelog_path" \) ]
+    then
+        echo "ERROR: readable changelog not found at '$changelog_path'" >&2
+        return 1
+    fi
+}
+
+
+changelog_versions()
+{
+    local changelog_path="$1"
+    local all="$(
+        dpkg-parsechangelog -l"${changelog_path}" --format rfc822 --all \
+            | grep ^Version: \
+            | cut -d ':' -f 2 \
+            | sort -V)"
+    local snapshot="$(echo "$all" | grep SNAPSHOT | tail -1)"
+    local base="$(echo "$all" | grep -v SNAPSHOT | tail -1)"
+    local tag=v"$(echo "$base" | cut -d '~' -f 1 | cut -d '.' -f 1,2 | tr -d ' ')"
+    local tag_commit="$(echo "$base" | cut -d '~' -f 2 | tr -d "g")"
+    verify_snapshot "$snapshot"
+    verify_tag "$tag" "$tag_commit"
+    local next_version; next_version="$(version)"
+    verify_next_version "$next_version" "$tag"
+    echo "$snapshot" "$next_version"
+}
+
+
+print_new_changelog()
+{
+    local changelog_path="$1"
+    local snapshot_version="$2"
+    local next_version="$(echo "$3" | tr -d ' ')"
+    sed -e "s/$snapshot_version/$next_version/" "$changelog_path"
+}
+
+
+version()
+{
+    local desc="$(git describe --long --dirty --match='v*.*' 2> /dev/null )"
+    if [ -z "$desc" ]
+    then
+        echo "ERROR: not annotated tags of the form 'v*.*' found in Git" >&2
+        return 1
+    fi
+    echo "$desc" | tr '-' '~' | tr -d 'v ' | sed -e 's/~/./'
+}
+
+
+verify_snapshot()
+{
+    local snapshot="$1"
+    if [ -z "$snapshot" ]
+    then
+        echo "ERROR: no 'SNAPSHOT' version found in changelog to replace" >&2
+        return 1
+    fi
+}
+
+
+verify_tag()
+{
+    local tag="$1"
+    local expected_commit="$2"
+    local actual_commit="$(tag_dereference "$tag")"
+    if [ -z "$actual_commit" ]
+    then
+        echo "ERROR: annotated tag '$tag' from changelog not found in Git" >&2
+        return 1
+    fi
+    if ! commits_equal "$expected_commit" "$actual_commit"
+    then
+        echo -n "ERROR: tag '$tag' from changelog not expected commit " >&2
+        echo "($expected_commit): $actual_commit" >&2
+        return 1
+    fi
+}
+
+verify_next_version()
+{
+    local next_version="$1"
+    local changelog_tag="$2"
+    if ! starts_with "v$next_version" "$changelog_tag"
+    then
+        echo -n "ERROR: tag '$changelog_tag' from changelog " >&2
+        echo "does not reflect latest tag: $next_version" >&2
+        return 1
+    fi
+}
+
+
+tag_dereference()
+{
+    local tag="$1"
+    git show-ref --dereference "$tag" | tail -1 | cut -d ' ' -f 1
+}
+
+
+commits_equal()
+{
+    test "$(rev_parse "$1")" = "$(rev_parse "$2")"
+}
+
+
+starts_with()
+{
+    local string="$1"
+    local prefix="$2"
+    test "${string#$prefix}" != "$string"
+}
+
+
+rev_parse()
+{
+    git rev-parse --verify --quiet "$1"
+}
+
+
+first()
+{
+    echo $1
+}
+
+
+second()
+{
+    echo $2
+}
+
+
+main "$1"

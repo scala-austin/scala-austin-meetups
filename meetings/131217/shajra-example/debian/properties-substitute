@@ -1,0 +1,35 @@
+#!/bin/sh
+#
+# Makes substitutions in specified file and outputs result to standard output.
+
+
+ROOT="$(readlink -f "$(dirname $0)")"
+PROPS_FILE="$ROOT/properties"
+
+
+main()
+{
+    local filepath="$1"
+    if [ -r "$filepath" ]
+    then
+        do_substitution "$filepath"
+    else
+        echo "ERROR: no file found at '$filepath'" >&2
+    fi
+}
+
+
+do_substitution()
+{
+    local filepath="$1"
+    env --ignore-environment - /bin/sh -a -c "
+        . $PROPS_FILE
+        unset PWD
+        perl -wnp \
+            -e 's/(__([^\\}]+)__)/exists \$ENV{\$2} ? \$ENV{\$2} : \$1/eg' \
+            '$filepath'
+        "
+}
+
+
+main $@

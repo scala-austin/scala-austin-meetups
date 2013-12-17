@@ -1,0 +1,11 @@
+yourorg-yourapp (0.0.SNAPSHOT) UNRELEASED; urgency=low
+
+  * development continuous deployment
+
+ -- Your App Maintainers <yourapp@yourorg.org>  Tue, 25 Jun 2013 21:31:40 -0500
+
+yourorg-yourapp (0.0.0~g8fa5af4) UNRELEASED; urgency=low
+
+  * this is a bootstrap "release" to assist with automation
+
+ -- Your App Maintainers <yourapp@yourorg.org>  Tue, 20 Nov 2013 21:45:49 -0500
