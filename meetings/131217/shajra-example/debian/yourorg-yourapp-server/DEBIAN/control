@@ -1,0 +1,14 @@
+Package: yourorg-yourapp-server
+Source: yourorg-yourapp
+Version: 0.0.25~g822bcdb~dirty
+Architecture: all
+Maintainer: Your App Maintainers <yourapp@yourorg.com>
+Installed-Size: 16445
+Depends: adduser (>= 3.113+nmu3), openjdk-7-jre-headless
+Section: misc
+Priority: extra
+Homepage: http://yourorg.com/yourapp
+Description: example Debian package
+ This is an example Debian packaging for project presented at the December 17,
+ 2013 meetup of the Austin Scala Enthusiasts.  The topic was on improved builds
+ with SBT.  This packaging illustrates integration of SBT with Debian.

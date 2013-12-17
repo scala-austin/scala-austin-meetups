@@ -1,0 +1,7 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+
+Files: *
+Copyright: Copyright 2013 Your Organization, Inc.
+License: Your Organization Internal
+ This program is for Your Organization internal use only.  Your Organization
+ reserves all rights.
