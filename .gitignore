@@ -1,3 +1,5 @@
+# SBT
+#
 target/
 
 # Vim
@@ -38,3 +40,13 @@ cscope.out
 # Mac
 #
 .DS_Store
+
+# Debian-generated files
+#
+debian/yourorg-yourapp-server/
+debian/yourorg-yourapp-server.*
+debian/files
+debian/*.debhelper
+debian/*.substvars
+*.changes
+!debian/*.in
