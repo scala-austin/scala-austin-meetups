@@ -50,7 +50,7 @@ object YourAppBuild extends Build
       .aggregate(extn, server, unidoc)
 
   lazy val unidoc =
-    Project("yourorg-yourapp-unidoc", file("modules/unidoc"))
+    Project("yourorg-yourapp-unidoc", file("unidoc"))
       .settings(unidocSettings: _*)
       .aggregate(
         extnScalaz,
